@@ -17,7 +17,7 @@ header {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 header h1 {
-    font-size: 2.5em; /* %25 büyüme için örnek: default ~2em ise 2.5em yapıldı */
+    font-size: 3.0em; /* %25 büyüme için örnek: default ~2em ise 2.5em yapıldı */
     color: #FFCD05; /* Sarı */
     text-shadow: 
         -1px -1px 0 #5C4033,
@@ -37,7 +37,7 @@ header h1 {
 }
 
 .logo {
-    max-width: 150px;
+    max-width: 350px;
     display: block;
     margin: 0 auto 10px;
 }
@@ -51,6 +51,8 @@ nav ul {
     justify-content: center;
     background-color: #001a33;
     border-bottom: 3px solid #FFCD05;
+background-color: rgba(0, 0, 0, 0.2); 
+    border-radius: 15px;
 }
 nav ul li {
     margin: 5px;
@@ -66,13 +68,13 @@ nav ul li a {
 nav ul li a:hover {
     background-color: #FFCD05;
     color: #002244;
-    border-radius: 5px;
+    border-radius: 15px;
 }
 .section {
     display: none;
     padding: 40px 20px;
     text-align: center;
-    background-color: white;
+    background-color: beige;
     margin: 20px auto;
     width: 90%;
     max-width: 1000px;
@@ -116,13 +118,13 @@ footer {
         align-items: center;
     }
     nav ul li {
-        width: 100%;
+        width: 90%;
         text-align: center;
     }
     nav ul li a {
         padding: 15px;
         font-size: 20px;
-    }
+  }
     .logo {
         max-width: 120px;
     }
@@ -232,3 +234,4 @@ img#logo {
     width: 225%;
     height: auto;
 }
+
