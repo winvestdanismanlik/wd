@@ -2,21 +2,36 @@ body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f9f9f9;
+    background-color: gray;
     color: #333;
 }
+
 header {
-    background-color: #002244;
+    background-image: url('arkaplan.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
     color: white;
     padding: 20px;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+
+.logo-large {
+    width: 150px;
+    height: auto;
+    margin-bottom: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .logo {
     max-width: 150px;
     display: block;
     margin: 0 auto 10px;
 }
+
 nav ul {
     list-style-type: none;
     padding: 0;
@@ -31,7 +46,7 @@ nav ul li {
     margin: 5px;
 }
 nav ul li a {
-    color: white;
+    color: #ffea98;
     text-decoration: none;
     font-size: 18px;
     padding: 12px 15px;
@@ -101,6 +116,9 @@ footer {
     .logo {
         max-width: 120px;
     }
+    .logo-large {
+        width: 120px;
+    }
     .section {
         width: 95%;
         padding: 30px 15px;
@@ -148,12 +166,13 @@ footer {
     flex-direction: column;
     align-items: center;
     background-color: #002244;
-    color: white;
+    color: #ffd700;
     padding: 20px;
 }
 
 .logo-title {
     display: flex;
+    flex-direction: column;
     align-items: center;
     gap: 15px;
     justify-content: center;
@@ -164,7 +183,6 @@ footer {
     max-width: 60px;
     height: auto;
 }
-
 
 .social-links {
     margin: 20px 0;
@@ -197,4 +215,10 @@ footer {
 
 .instagram:hover {
     background-color: #c6285b;
+}
+
+/* Logoyu %25 büyütme */
+img#logo {
+    width: 225%;
+    height: auto;
 }
