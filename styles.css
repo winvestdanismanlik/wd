@@ -1,0 +1,200 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+}
+header {
+    background-color: #002244;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.logo {
+    max-width: 150px;
+    display: block;
+    margin: 0 auto 10px;
+}
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: #001a33;
+    border-bottom: 3px solid #FFCD05;
+}
+nav ul li {
+    margin: 5px;
+}
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 12px 15px;
+    display: block;
+    transition: 0.3s;
+}
+nav ul li a:hover {
+    background-color: #FFCD05;
+    color: #002244;
+    border-radius: 5px;
+}
+.section {
+    display: none;
+    padding: 40px 20px;
+    text-align: center;
+    background-color: white;
+    margin: 20px auto;
+    width: 90%;
+    max-width: 1000px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+}
+.active {
+    display: block;
+}
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #001a33;
+    color: white;
+    margin-top: 20px;
+    border-top: 3px solid #FFCD05;
+}
+.contact-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 18px;
+    color: white;
+    background-color: #FFCD05;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+.contact-button:hover {
+    background-color: #e6b800;
+}
+@media (max-width: 768px) {
+    html, body {
+        overflow-x: hidden;
+    }
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+    nav ul li {
+        width: 100%;
+        text-align: center;
+    }
+    nav ul li a {
+        padding: 15px;
+        font-size: 20px;
+    }
+    .logo {
+        max-width: 120px;
+    }
+    .section {
+        width: 95%;
+        padding: 30px 15px;
+    }
+    .contact-button {
+        width: 100%;
+        font-size: 16px;
+    }
+}
+
+.nav-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #002244;
+    padding: 10px 20px;
+    flex-wrap: wrap;
+    color: white;
+}
+
+.left-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.nav-logo {
+    max-height: 50px;
+    width: auto;
+}
+
+@media (min-width: 769px) {
+    .nav-header {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .left-header {
+        margin-bottom: 0;
+    }
+}
+
+.header-flex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #002244;
+    color: white;
+    padding: 20px;
+}
+
+.logo-title {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.logo-small {
+    max-width: 60px;
+    height: auto;
+}
+
+
+.social-links {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.social-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    transition: background 0.3s;
+}
+
+.whatsapp {
+    background-color: #25D366;
+}
+
+.whatsapp:hover {
+    background-color: #1ebe5d;
+}
+
+.instagram {
+    background-color: #E1306C;
+}
+
+.instagram:hover {
+    background-color: #c6285b;
+}
