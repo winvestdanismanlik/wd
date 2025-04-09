@@ -332,21 +332,11 @@
         <p>&copy; 2025 Winvest Danışmanlık. Tüm hakları saklıdır.</p>
 
 <div class="text-center mt-4 text-sm text-gray-500">
-    <span>Ziyaretçi Sayısı: <span id="visitor-count" class="font-semibold text-gray-700">yükleniyor...</span></span>
+    <span>Ziyaretçi Sayısı: 
+        <img src="https://simplehitcounter.com/hit.php?uid=3832800&counter=1&f=0&b=16777215" alt="Ziyaretçi Sayacı" style="display:inline; height: 24px;">
+    </span>
 </div>
 
-<script>
-    // API üzerinden ziyaretçi sayacı
-    const counterKey = 'winvestdanismanlik-com';
-    fetch(`https://api.countapi.xyz/hit/${counterKey}/visits`)
-        .then(res => res.json())
-        .then(data => {
-            document.getElementById("visitor-count").textContent = data.value.toLocaleString('tr-TR');
-        })
-        .catch(() => {
-            document.getElementById("visitor-count").textContent = "Hata!";
-        });
-</script>
 
 
     </footer>
