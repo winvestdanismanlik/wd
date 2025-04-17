@@ -95,6 +95,55 @@
             margin-right: 8px;
             font-size: 1.2em;
         }
+        /* İlanlar için eklenen stiller */
+        .ilanlar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .ilan-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        .ilan-card:hover {
+            transform: translateY(-5px);
+        }
+        .ilan-header {
+            background: linear-gradient(135deg, #1a1a1a 0%, grey 100%);
+            color: white;
+            padding: 15px;
+            font-weight: bold;
+        }
+        .ilan-body {
+            padding: 15px;
+        }
+        .ilan-row {
+            display: flex;
+            margin-bottom: 8px;
+        }
+        .ilan-label {
+            font-weight: bold;
+            min-width: 120px;
+            color: #d4af37;
+        }
+        .ilan-value {
+            flex: 1;
+        }
+        .loading {
+            text-align: center;
+            padding: 20px;
+            font-style: italic;
+            color: #666;
+        }
+        .error-message {
+            color: red;
+            text-align: center;
+            padding: 20px;
+        }
     </style>
     <script defer src="script.js"></script>
 </head>
@@ -110,6 +159,7 @@
                 <li><a href="#hakkimizda" class="nav-link">&nbsp;&nbsp;&nbsp Hakkımızda &nbsp;&nbsp;&nbsp</a></li>
                 <li><a href="#hizmetler" class="nav-link">&nbsp;&nbsp;&nbsp;&nbsp Hizmetler &nbsp;&nbsp;&nbsp;&nbsp</a></li>
                 <li><a href="#finansal-hesaplama" class="nav-link">Finansal_Hesaplama</a></li>
+                <li><a href="#ilanlar" class="nav-link">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp İlanlar &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp</a></li>
                 <li><a href="#iletisim" class="nav-link">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp İletişim &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp</a></li>
             </ul>
         </nav>
@@ -159,7 +209,7 @@
         <p>• Hedef kitlenize uygun pazarlama çözümleri</p>
     </section>
 
-    <!-- New Financial Calculation Section -->
+    <!-- Financial Calculation Section -->
     <section id="finansal-hesaplama" class="section">
         <div class="container mx-auto px-4 py-8 max-w-7xl">
             <!-- Başlık ve Logo -->
@@ -315,6 +365,18 @@
         </div>
     </section>
 
+    <!-- Yeni Eklenen İlanlar Bölümü -->
+    <section id="ilanlar" class="section">
+        <div class="ilanlar-container">
+            <h2 class="text-2xl font-bold mb-6 text-center gold-text">İlanlar</h2>
+            <div id="ilanlar-listesi">
+                <div class="loading">
+                    <i class="fas fa-spinner fa-spin"></i> İlanlar yükleniyor...
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="iletisim" class="section">
         <h2>İletişim</h2>
         <p><strong>Telefon:</strong> İlhami ONAY - 0507 416 1424 &nbsp &nbsp &  &nbsp &nbsp Rifat ARSLAN - 0505 304 9918</p>
@@ -330,7 +392,6 @@
 
     <footer>
         <p>&copy; 2025 Winvest Danışmanlık. Tüm hakları saklıdır.</p>
-
     </footer>
 
     <script>
@@ -343,7 +404,96 @@
         document.addEventListener('DOMContentLoaded', function() {
             setLoanType('konut');
             document.getElementById('scheduleFilter').addEventListener('change', filterSchedule);
+            fetchIlanlar(); // İlanları yükle
         });
+
+        // İlanları Google Sheets'ten çekme fonksiyonu
+        function fetchIlanlar() {
+            const ilanlarListesi = document.getElementById('ilanlar-listesi');
+            const sheetsUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRvFRKeiwaFV_elPXORIQY6t3gNe8rrghxqP1FCnAnsfer-rrp4m9u6UprZKV9YFBcSRcGWZY3cSm8d/pub?gid=0&single=true&output=csv";
+            
+            fetch(sheetsUrl)
+                .then(response => {
+                    if (!response.ok) throw new Error('Ağ yanıtı hatalı');
+                    return response.text();
+                })
+                .then(csvData => {
+                    const ilanlar = parseCSV(csvData);
+                    displayIlanlar(ilanlar);
+                })
+                .catch(error => {
+                    console.error('İlanlar yüklenirken hata:', error);
+                    ilanlarListesi.innerHTML = `<div class="error-message">İlanlar yüklenirken bir hata oluştu. Lütfen daha sonra tekrar deneyiniz.</div>`;
+                });
+        }
+
+        // CSV'yi parse etme fonksiyonu
+        function parseCSV(csv) {
+            const lines = csv.split('\n');
+            const headers = lines[0].split(',').map(h => h.trim());
+            const result = [];
+            
+            for (let i = 1; i < lines.length; i++) {
+                if (!lines[i]) continue;
+                
+                const obj = {};
+                const currentline = lines[i].split(',');
+                
+                for (let j = 0; j < headers.length; j++) {
+                    obj[headers[j]] = currentline[j] ? currentline[j].trim() : '';
+                }
+                
+                result.push(obj);
+            }
+            
+            return result;
+        }
+
+        // İlanları görüntüleme fonksiyonu
+        function displayIlanlar(ilanlar) {
+            const ilanlarListesi = document.getElementById('ilanlar-listesi');
+            
+            if (!ilanlar || ilanlar.length === 0) {
+                ilanlarListesi.innerHTML = '<div class="error-message">Henüz ilan bulunmamaktadır.</div>';
+                return;
+            }
+            
+            let html = '';
+            
+            ilanlar.forEach(ilan => {
+                html += `
+                    <div class="ilan-card">
+                        <div class="ilan-header">
+                            ${ilan.Başlık || 'İlan Başlığı'}
+                        </div>
+                        <div class="ilan-body">
+                            <div class="ilan-row">
+                                <div class="ilan-label">Tür:</div>
+                                <div class="ilan-value">${ilan.Tür || '-'}</div>
+                            </div>
+                            <div class="ilan-row">
+                                <div class="ilan-label">Konum:</div>
+                                <div class="ilan-value">${ilan.Konum || '-'}</div>
+                            </div>
+                            <div class="ilan-row">
+                                <div class="ilan-label">Fiyat:</div>
+                                <div class="ilan-value">${ilan.Fiyat || '-'}</div>
+                            </div>
+                            <div class="ilan-row">
+                                <div class="ilan-label">Açıklama:</div>
+                                <div class="ilan-value">${ilan.Açıklama || '-'}</div>
+                            </div>
+                            <div class="ilan-row">
+                                <div class="ilan-label">İletişim:</div>
+                                <div class="ilan-value">${ilan.İletişim || '-'}</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            ilanlarListesi.innerHTML = html;
+        }
 
         // Formatlama fonksiyonları
         function formatNumber(num) {
@@ -556,6 +706,8 @@
                     remaining: Math.max(remaining, 0)
                 });
             }
+
+            //
 
             // Ödeme planını göster
             document.getElementById("paymentScheduleContainer").classList.remove("hidden");
