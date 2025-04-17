@@ -462,6 +462,10 @@
             
             ilanlar.forEach(ilan => {
                 html += `
+                    <div class="ilan-card">
+                        <div class="ilan-header">
+                            ${ilan.Başlık || 'İlan Başlığı'}
+                        </div>
 
 
 <style>
@@ -477,10 +481,6 @@
         font-weight: bold;
     }
 </style>
-                    <div class="ilan-card">
-                        <div class="ilan-header">
-                            ${ilan.Başlık || 'İlan Başlığı'}
-                        </div>
                        
 			    
                        	    <div class="ilan-body">
