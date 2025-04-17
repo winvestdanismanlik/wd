@@ -462,8 +462,24 @@
             
             ilanlar.forEach(ilan => {
                 html += `
+
+<style>
+    .ilan-card {
+        padding: 15px;
+        font-family: Arial, sans-serif;
+    }
+    .ilan-header {
+        background-color: silver;
+        color: #333;
+        padding: 10px;
+        border-radius: 5px;
+        font-weight: bold;
+    }
+</style>
+
+
                     <div class="ilan-card">
-                        <div class="ilan-header" style="background-color: red;">
+                        <div class="ilan-header">
                             ${ilan.Başlık || 'İlan Başlığı'}
                         </div>
                        
